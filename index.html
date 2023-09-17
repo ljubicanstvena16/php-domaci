@@ -1,183 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-            crossorigin="anonymous"
-        />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Recursive">
+    <style>
 
-        <link rel="stylesheet" href="css/main.css" />
+        body{
+            background-color: rgb(247, 221, 142);;
+            font-family: Recursive, sans-serif;
+        }
 
-        <title>Domaci PHP -> Internet tehnologije 2023</title>
-    </head>
-    <body>
-        <h2 class="text-center mt-5">Prijava</h2>
+        .belo{
+            background-color: white;
+            padding: 3%;
+            font-family: Recursive, sans-serif;
+        }
 
-        <div class="container">
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-8">
-                    <form>
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control p-2"
-                                name="user"
-                                placeholder="Korisnicko ime..."
-                                id="username"
-                            />
-                            <br />
-                        </div>
+        .pink {
+            background-color: hotpink;
+            color: white;
+        }
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    class="form-control"
-                                    placeholder="Uneti lozinku"
-                                    id="password"
-                                />
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <input
-                                            type="checkbox"
-                                            onclick="hide('password')"
-                                            class="form-check-input"
-                                            id="showPassword1"
-                                        />
-                                        <label
-                                            class="form-check-label p-2"
-                                            for="showPassword1"
-                                        >
-                                            Prikazi sifru
-                                        </label>
-                                    </div>
-                                </div>
+        .klasa{
+            padding: 30px;
+        }
+
+    </style>
+    <title>Prijava</title>
+</head>
+<body>
+    <div class="grid-container grid-x align-center klasa">
+        <div>
+            <div class="belo cell medium-5">
+                <form>
+                    <div class="callout text-center">
+                        <h1><b>Dobrodosli!</b></h1>
+                    </div>
+
+                    <div class="cell">
+                        <h2 class="text-center"><b>Prijava</b></h2>
+
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell">
+                                <label>Korisnicko ime
+                                    <input type="text" name="username" placeholder="Username" id="username">
+                                </label>
                             </div>
                         </div>
 
-                        <div
-                            class="form-group row justify-content-center mt-5 mb-5"
-                        >
-                            <button
-                                type="button"
-                                id="login"
-                                onclick="Login()"
-                                class="btn btn-warning btn-block"
-                            >
-                                <h4>Prijavi se</h4>
-                            </button>
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell">
+                                <label>Sifra
+                                    <input type="password" name="password" placeholder="Password" id="password">
+                                </label>
+                            </div>
                         </div>
 
-                        <hr />
-
-                        <h2 class="text-center">Registracija</h2>
-
-                        <div id="registracija">
-                            <div class="form-group">
-                                <input
-                                    type="text"
-                                    class="form-control p-2 mt-5 mb-5"
-                                    placeholder="Ime i prezime"
-                                    id="imeprezime"
-                                />
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell">
+                                <button type="button" id="login" class="button primary expanded alert" onclick="Login()">Prijavi se</button>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <input
-                                    type="text"
-                                    class="form-control p-2 mb-5"
-                                    placeholder="Korisnicko ime"
-                                    id="korisnickoIme"
-                                />
-                            </div>
+                        <hr>
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input
-                                        type="password"
-                                        class="form-control"
-                                        placeholder="Lozinka"
-                                        id="lozinka"
-                                    />
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <input
-                                                type="checkbox"
-                                                onclick="hide('lozinka')"
-                                                class="form-check-input"
-                                                id="showPassword2"
-                                            />
-                                            <label
-                                                class="form-check-label p-2"
-                                                for="showPassword2"
-                                            >
-                                                Prikazi
-                                            </label>
-                                        </div>
-                                    </div>
+                        <h2 class="text-center"><b>Registruj se</b></h2>
+
+                        <div id="registration">
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell">
+                                    <label>Ime i prezime
+                                        <input type="text" placeholder="Ime i prezime..." id="imeprezime">
+                                    </label>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input
-                                        type="password"
-                                        class="form-control"
-                                        placeholder="Potvrdi lozinku"
-                                        id="lozinkaPotvrda"
-                                    />
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <input
-                                                type="checkbox"
-                                                onclick="hide('lozinkaPotvrda')"
-                                                class="form-check-input"
-                                                id="showPassword3"
-                                            />
-                                            <label
-                                                class="form-check-label p-2"
-                                                for="showPassword3"
-                                            >
-                                                Prikazi
-                                            </label>
-                                        </div>
-                                    </div>
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell">
+                                    <label>Korisnicko ime
+                                        <input type="text" placeholder="Korisnicko ime..."id="korisnickoIme">
+                                    </label>
                                 </div>
                             </div>
 
-                            <div
-                                class="form-group row justify-content-center mt-5 mb-5"
-                            >
-                                <button
-                                    type="button"
-                                    id="reg"
-                                    onclick="Registracija()"
-                                    class="btn btn-warning btn-block p-13 mt-3 mb-5"
-                                >
-                                    <h4>Registruj se</h4>
-                                </button>
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell">
+                                    <label>Sifra
+                                        <input type="password" placeholder="Unesi sifru..." id="lozinka">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell">
+                                    <label>Potvrdi sifru
+                                        <input type="password" placeholder="Potvrdi iznad unetu sifru..." id="lozinka2">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell">
+                                    <button type="button" class="button success expanded alert" onclick="Register()">Kreiraj novi nalog u bazi podataka</button>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
-        <script
-            src="https://code.jquery.com/jquery-3.7.0.js"
-            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+       
+       //POMOCNA FUNKCIJA
+       function pomocna(poziv){
+            if (poziv.val() == ''){
+                poziv.css('border', '5px solid hotpink');
+                return false;
+            } else 
+                poziv.css('border','');
+            return true;
+        }
+       
+       
+       //LOGIN
+        function Login(){
+            var u = $("#username");
+            var p = $("#password");
+                
+            if (pomocna(u) & pomocna(p)){
+                $.ajax({
+                    url: 'login.php',
+                    method: 'POST',
+                    dataType: 'text',
+                    data: {
+                        key: 'login',
+                        username: u.val(),
+                        password: p.val(),
+                    },
+                    success: function(data){
+                        if (data == "greska"){
+                            alert('Prijavljivanje nije uspelo. Pokusajte uskoro ponovo.');
+                        }
+                        else {
+                            window.location = "pocetna.html";
+                        }
+                    }
+                })
+            }
+        }
+
+        //REGISTER
+        function Register(){
+            var name = $("#imeprezime");
+            var username = $("#korisnickoIme");
+            var password = $("#lozinka");
+            var check = $("#lozinka2");
+                
+            if (pomocna(name) & pomocna(username) & pomocna(password) & pomocna(check)){
+                if(password.val() == check.val()){
+                    $.ajax({
+                        url: 'register.php',
+                        method: 'POST',
+                        dataType: 'text',
+                        data: {
+                            key: 'reg',
+                            name: name.val(),
+                            username: username.val(),
+                            password: password.val(),
+                        },
+                        success: function(data){
+                            if (data == "OK"){
+                                alert('Uspeh!');
+                                window.location = "index.html";
+                            } else {
+                                alert('Neuspesno. Razlog: ' + data);
+                            }
+                        }
+                    })
+                } else {
+                    alert("Lozinke moraju biti razlicite.");
+
+                    password.css('border', '5px orange');
+                    check.css('border', '5px orange');
+                }
+            }
+        }
+
+
+    </script>
+</body>
 </html>
