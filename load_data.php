@@ -1,41 +1,51 @@
 <?php
 include('connection.php');
+session_start();
 
 if (isset($_POST['key'])) {
 
     if ($_POST['key'] == 'insert') {
-
         $todo_id = $_POST['todo_id'];
 
+        $userid = $_SESSION['userid'];
         $nazivTaska = $_POST['nazivTaska'];
         $datumPocetka = $_POST['datumPocetka'];
         $datumZavrsetka = $_POST['datumZavrsetka'];
         $osobeTaska = $_POST['osobeTaska'];
         $opisTaska = $_POST['opisTaska'];
 
-        $check = mysqli_query($conn, "SELECT * FROM todo WHERE todo_id = '$todo_id'");
+        // Validacija datuma
+        $startDateTime = DateTime::createFromFormat('Y-m-d', $datumPocetka);
+        $endDateTime = DateTime::createFromFormat('Y-m-d', $datumZavrsetka);
 
-        if (mysqli_num_rows($check) > 0) {
-            echo "Isti task " . $naziv . ", već postoji!";
+        if ($startDateTime === false || $endDateTime === false || $startDateTime > $endDateTime) {
+            echo "Neispravan unos datuma. Datum pocetka mora biti pre datuma zavrsetka taska. Takodje proveri da li unosis datum u ispravnom formatu YY-MM-DD.";
         } else {
+            $check = mysqli_query($conn, "SELECT * FROM todo WHERE todo_id = '$todo_id'");
 
-            $sql = "INSERT INTO `todo` (`todo_id`,`nazivTaska`, `datumPocetka`, `datumZavrsetka`,`osobeTaska`,`opisTaska`) VALUES ('$todo_id','$nazivTaska', '$datumPocetka', '$datumZavrsetka', '$osobeTaska', '$opisTaska')";
-
-            if ($conn->query($sql) === TRUE) {
-                echo "Ubacen novi task!";
+            if (mysqli_num_rows($check) > 0) {
+                echo "Isti task " . $naziv . ", već postoji!";
             } else {
-                echo "Takav task vec postoji!";
+                $sql = "INSERT INTO `todo` (`todo_id`,`nazivTaska`, `datumPocetka`, `datumZavrsetka`,`osobeTaska`,`opisTaska`,`userid`) VALUES ('$todo_id','$nazivTaska', '$datumPocetka', '$datumZavrsetka', '$osobeTaska', '$opisTaska', '$userid')";
+
+                if ($conn->query($sql) === TRUE) {
+                    echo "Ubacen novi task!";
+                } else {
+                    echo "Takav task vec postoji!";
+                }
             }
         }
     }
 
 
+
     if ($_POST['key'] == 'load') {
 
+        $userid = $_SESSION['userid'];
         $start = $conn->real_escape_string($_POST['start']);
         $limit = $conn->real_escape_string($_POST['limit']);
         $sort = $conn->real_escape_string($_POST['sort']);
-        $sql = $conn->query("SELECT todo_id, nazivTaska, datumPocetka, datumZavrsetka, osobeTaska, opisTaska FROM todo ORDER BY $sort LIMIT $start, $limit");
+        $sql = $conn->query("SELECT todo_id, nazivTaska, datumPocetka, datumZavrsetka, osobeTaska, opisTaska FROM todo WHERE userid = $userid ORDER BY $sort LIMIT $start, $limit");
 
         if ($sql->num_rows > 0) {
             $response = "";
