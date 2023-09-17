@@ -188,6 +188,8 @@
           $("#tableManager").modal("show");
         });
 
+        document.getElementById("todo_id").disabled = true;
+
         $("#tableManager").on("hidden.bs.modal", function () {
           $("#izmeni").fadeIn();
           $("#vidi").fadeOut();
