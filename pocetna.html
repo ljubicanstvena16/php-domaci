@@ -29,7 +29,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="ID..."
+                  placeholder="ID se automatski dodaje!"
                   id="todo_id"
                 /><br />
                 <input
@@ -201,7 +201,7 @@
 
           $("#closeBtn").fadeOut();
           $(".modal-title").html("Unos novog zadatka:");
-          document.getElementById("todo_id").disabled = false;
+        //   document.getElementById("todo_id").disabled = false;
           $("#manageBtn")
             .attr("value", "Dodaj")
             .attr("onclick", "main('insert')")
